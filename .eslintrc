@@ -1,0 +1,20 @@
+{
+  "extends": "react-app",
+  "globals": {
+    "$": true,
+    "Kinetic": true,
+    "TWEEN": true,
+    "Swiper": true,
+    "QRCode": true,
+    "TagCanvas": true,
+    "Tiny": true,
+    "wx": true,
+    "Sketchpad": true,
+    "PhotoSwipeUI_Default": true,
+    "PhotoSwipe": true
+  },
+  "rules": {
+    "no-mixed-operators": 0,
+    "no-control-regex": 0
+  }
+}
