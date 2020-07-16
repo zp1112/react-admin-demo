@@ -4,13 +4,12 @@ import styles from './admin.module.less'
 import Header from './children/header'
 import Content from './children/content'
 import Footer from './children/footer'
-import { routers } from '../../routers/router.config'
-import { initRouters } from '../../routers/router.config'
+import routers from '../../routers/router.config'
 
 const SubMenu = Menu.SubMenu
 
 class Admin extends Component {
-  rootSubmenuKeys = JSON.parse(JSON.stringify(initRouters))
+  rootSubmenuKeys = JSON.parse(JSON.stringify(routers))
   state = {
     collapsed: false,
     openKeys: [], // 打开的菜单
@@ -74,7 +73,7 @@ class Admin extends Component {
   toggleCollapsed = () => {
     if (!this.state.collapsed) {
       // 重置菜单，全部关闭
-      this.rootSubmenuKeys = JSON.parse(JSON.stringify(initRouters))
+      this.rootSubmenuKeys = JSON.parse(JSON.stringify(routers))
     }
     this.setState({
       collapsed: !this.state.collapsed,
