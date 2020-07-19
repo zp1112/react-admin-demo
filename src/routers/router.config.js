@@ -14,6 +14,7 @@ export default [
     path: '/login',
     component: Login,
     redirectPath: '/login',
+    hide: true
   },
   {
     path: '/user',
@@ -25,5 +26,6 @@ export default [
   {
     path: '/notfound',
     component: NotFound,
+    hide: true
   },
 ];

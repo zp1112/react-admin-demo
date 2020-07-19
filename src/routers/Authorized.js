@@ -9,4 +9,4 @@ function Authorized(props) {
   return noMatch;
 }
 
-export default connect(store => ({ userInfo: {} }))(Authorized);
+export default connect(store => {console.log(999, store); return ({ userInfo: {currentAuthority: 'admin'} })})(Authorized);

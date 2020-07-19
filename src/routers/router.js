@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import {
   HashRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-  withRouter
+  Switch
 } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -49,14 +46,14 @@ class router extends Component {
             const { path, component, authority, redirectPath, ...rest } = rc;
             return (
               <Admin {...rc} { ...this.props }>
-              <AuthorizedRoute
-                key={path}
-                path={path}
-                component={component}
-                authority={authority}
-                redirectPath={redirectPath}
-                {...rest}
-              />
+                <AuthorizedRoute
+                  key={path}
+                  path={path}
+                  component={component}
+                  authority={authority}
+                  redirectPath={redirectPath}
+                  {...rest}
+                />
               </Admin>
             );
           })}

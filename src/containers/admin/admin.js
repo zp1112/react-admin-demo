@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
+import { withRouter } from 'react-router';
 import styles from './admin.module.less'
 import Header from './children/header'
 import Content from './children/content'
@@ -232,29 +233,31 @@ class Admin extends Component {
   render() {
     // 递归路由
     const mapRouters = item => {
-      if (item.children && item.children.length) {
-        // 存在子集
-        return (
-          <SubMenu
-            onTitleClick={this.onTitleClick}
-            key={item.menuName}
-            title={
-              <span>
-                {/* <Icon type={item.menuIco} /> */}
-                <span>{item.menuName}</span>
-              </span>
-            }
-          >
-            {item.children.map(child => mapRouters(child))}
-          </SubMenu>
-        )
-      } else {
-        // 没有子集
-        return (
-          <Menu.Item key={item.path}>
-            <span>{item.menuName}</span>
-          </Menu.Item>
-        )
+      if (!item.hide) {
+        if (item.children && item.children.length) {
+          // 存在子集
+          return (
+            <SubMenu
+              onTitleClick={this.onTitleClick}
+              key={item.menuName}
+              title={
+                <span>
+                  {/* <Icon type={item.menuIco} /> */}
+                  <span>{item.menuName}</span>
+                </span>
+              }
+            >
+              {item.children.map(child => mapRouters(child))}
+            </SubMenu>
+          )
+        } else {
+          // 没有子集
+          return (
+            <Menu.Item key={item.path}>
+              <span>{item.menuName}</span>
+            </Menu.Item>
+          )
+        }
       }
     }
     // 只能同时打开一个
@@ -293,15 +296,17 @@ class Admin extends Component {
             onClick={event => this.menuClick(event)}
           >
             {routers.map(item => {
-              if (!item.children) {
-                return (
-                  <Menu.Item key={item.path}>
-                    {/* <Icon type={item.menuIco} /> */}
-                    <span>{item.menuName}</span>
-                  </Menu.Item>
-                )
-              } else {
-                return mapRouters(item)
+              if (!item.hide) {
+                if (!item.children) {
+                  return (
+                    <Menu.Item key={item.path}>
+                      {/* <Icon type={item.menuIco} /> */}
+                      <span>{item.menuName}</span>
+                    </Menu.Item>
+                  )
+                } else {
+                  return mapRouters(item)
+                }
               }
             })}
           </Menu>
@@ -326,4 +331,4 @@ class Admin extends Component {
     )
   }
 }
-export default Admin
+export default withRouter(Admin)
